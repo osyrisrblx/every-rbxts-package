@@ -12,7 +12,6 @@ async function getAllPackages() {
 
 	while (true) {
 		const url = `https://api.npms.io/v2/search?q=scope:${SCOPE}&size=${QUERY_SIZE}&from=${offset}`;
-		console.log("url", url);
 		const response = await axios.get(url);
 
 		for (const v of response.data.results) {
