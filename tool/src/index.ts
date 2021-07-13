@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import axios from "axios";
-import { exec } from "child_process"
+import { execSync } from "child_process"
 
 const QUERY_SIZE = 250;
 const SCOPE = "rbxts"
@@ -29,8 +29,9 @@ async function getAllPackages() {
 
 async function main() {
 	const allPkgNames = await getAllPackages();
+	console.log(`Found ${allPkgNames.length} packages`);
 	const pkgsStr = allPkgNames.map(v => `${v}@latest`).join(" ");
-	exec(`npm install ${pkgsStr}`);
+	execSync(`npm install -f ${pkgsStr}`);
 }
 
 main();
