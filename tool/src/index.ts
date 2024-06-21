@@ -11,10 +11,10 @@ async function getAllPackages() {
 	const pkgNames = new Array<string>();
 
 	while (true) {
-		const url = `https://api.npms.io/v2/search?q=scope:${SCOPE}&size=${QUERY_SIZE}&from=${offset}`;
+		const url = `https://registry.npmjs.com/-/v1/search?text=scope:${SCOPE}&size=${QUERY_SIZE}&from=${offset}`;
 		const response = await axios.get(url);
 
-		for (const v of response.data.results) {
+		for (const v of response.data.objects) {
 			pkgNames.push(v.package.name);
 		}
 
